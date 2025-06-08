@@ -5,10 +5,10 @@ down:
 	docker compose down
 
 migrate:
-	docker compose exec backend python src/manage.py migrate
+	docker compose exec django python manage.py migrate
 
 createsuperuser:
-	docker compose exec backend python src/manage.py createsuperuser
+	docker compose exec django python manage.py createsuperuser
 
 logs:
 	docker compose logs -f

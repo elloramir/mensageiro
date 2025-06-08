@@ -12,3 +12,4 @@ urlpatterns = [
     # Pedidos API route append
     path('api/v1/pedidos/', include('pedidos.urls')),
 ]
+

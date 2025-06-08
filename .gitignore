@@ -4,3 +4,6 @@ __pycache__/
 *.pyc
 /staticfiles/
 /media/
+
+node_modules
+bundle.js
