@@ -33,6 +33,9 @@ module.exports = {
         compress: true,
         port: 3000
     },
+    resolve: {
+        extensions: ['.js', '.jsx']
+    },
     module: {
         rules: [{
                 test: /\.(js|jsx)$/,
@@ -42,7 +45,6 @@ module.exports = {
                     options: {
                         presets: [
                             "@babel/preset-env",
-                            // runtime flag is required to allow React to be accessed globally
                             ["@babel/preset-react", {
                                 "runtime": "automatic"
                             }]
