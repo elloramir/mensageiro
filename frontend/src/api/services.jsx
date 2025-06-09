@@ -20,3 +20,7 @@ export const updatePedido = async (id, pedido) => {
 export const deletePedido = async (id) => {
   await client.delete(`${resource}${id}/`);
 };
+
+export const deleteForcedAll = async (id) => {
+  await client.delete(`${resource}delete-forced-all`);
+};

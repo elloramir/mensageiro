@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Alert } from 'react-bootstrap';
+import { Container, Alert, Stack } from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Inbox } from 'react-bootstrap-icons';
 import PedidosTable from './PedidosTable';
 import PedidoModal from './PedidoModal';
 import Header from './Header';
@@ -99,10 +99,20 @@ export default function Pedidos() {
     if (loading) return <LoadingSpinner />;
 
     return (
-        <Container className=" mb-5 p-5">
+        <Container className="mb-5 p-5">
             <Header onLogout={handleLogout} onCreate={openCreateModal} />
             {error && <Alert variant="danger">{error}</Alert>}
-            <PedidosTable pedidos={pedidos} onEdit={openEditModal} onDelete={handleDelete} />
+
+            {pedidos.length === 0 ? (
+                <Stack className="text-center mt-5 pt-5" gap={3}>
+                    <Inbox size={64} className="mx-auto text-muted" />
+                    <h5 className="text-muted">Nenhum pedido encontrado</h5>
+                    <p className="text-muted">Clique em "Novo Pedido" para adicionar o primeiro pedido.</p>
+                </Stack>
+            ) : (
+                <PedidosTable pedidos={pedidos} onEdit={openEditModal} onDelete={handleDelete} />
+            )}
+
             <PedidoModal
                 show={showModal}
                 onHide={() => setShowModal(false)}
@@ -111,6 +121,7 @@ export default function Pedidos() {
                 onChange={handleInputChange}
                 onSubmit={modalType === 'create' ? handleCreate : handleUpdate}
             />
+
             <ToastContainer position="bottom-right" autoClose={5000} />
         </Container>
     );

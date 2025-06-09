@@ -2,6 +2,19 @@ import React from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 import { Save, X } from 'react-bootstrap-icons';
 
+const pastelStyles = {
+    cancel: {
+        backgroundColor: '#f1f3f4',
+        borderColor: '#dadce0',
+        color: '#5f6368',
+    },
+    submit: {
+        backgroundColor: '#ccff90',
+        borderColor: '#ccff90',
+        color: '#1b5e20',
+    },
+};
+
 export default function PedidoModal({ 
     show, 
     onHide, 
@@ -54,11 +67,11 @@ export default function PedidoModal({
                 </Form>
             </Modal.Body>
             <Modal.Footer className="border-0">
-                <Button variant="outline-secondary" onClick={onHide} className="px-4">
+                <Button onClick={onHide} className="px-4" style={pastelStyles.cancel}>
                     <X className="me-2" />
                     Cancelar
                 </Button>
-                <Button variant="primary" onClick={onSubmit} className="px-4">
+                <Button onClick={onSubmit} className="px-4" style={pastelStyles.submit}>
                     <Save className="me-2" />
                     {type === 'create' ? 'Criar' : 'Salvar'}
                 </Button>

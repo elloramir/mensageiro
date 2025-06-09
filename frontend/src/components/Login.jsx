@@ -7,7 +7,7 @@ export default function Login() {
         <Container
             fluid
             className="d-flex justify-content-center align-items-center min-vh-100"
-            style={{ backgroundColor: '#f8f9fa' }} // light gray background
+            style={{ backgroundColor: '#f8f9fa' }}
         >
             <Row className="w-100 justify-content-center">
                 <Col md={6} lg={4}>
