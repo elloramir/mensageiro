@@ -1,95 +1,43 @@
-Backend (Django/DRF)
-CRUD de Pedidos
+### Project Overview
 
-    ✅ Model Pedido com campos obrigatórios (title, description, status, created_at, updated_at)
+A containerized fullstack application with a Django REST Framework backend and a React frontend, featuring JWT authentication, CRUD operations, async task processing with Celery + RabbitMQ, structured logging, and API documentation.
 
-    ✅ ViewSet (PedidoViewSet) com ações CRUD
+### System Requirements
 
-    ✅ Serializer (PedidoSerializer)
+- Docker and Docker Compose
+- make runtime (most Unix systems have it)
 
-    ✅ Roteamento em urls.py
+### Installation Setup
 
-    ✅ Tarefa assíncrona (process_pedido) com Celery
+git clone https://github.com/elloramir/messageiro
+cp .env.example .env
+docker-compose up --build
+make createsuperuser
 
-    ✅ Validação para impedir exclusão de pedidos não-pendentes (status != 'pendente')
+### Services
 
-    ❌ Endpoint /historico funcional (opcional, mas desejável)
+- Frontend: http://localhost:3000
+- Backend: http://localhost:8000
+- Swagger: http://localhost:8000/swagger/
+- RabbitMQ: http://localhost:15672/
 
-Autenticação JWT
+### Authentication
 
-    ✅ Configuração do SimpleJWT (TokenObtainPairView, TokenRefreshView)
+Authentication is handled through the frontend login using the user created during the installation step.
+The authentication endpoint is automatically created by the JWT addon.
 
-    ✅ Proteção dos endpoints com permissions.IsAuthenticated
+POST http://localhost:8000/token/
+Content-Type: application/json
 
-Mensageria (Celery + RabbitMQ)
+{
+  "username": "...",
+  "password": "..."
+}
 
-    ✅ Tarefa assíncrona básica (process_pedido com time.sleep(5))
+Authorization: Bearer [your_token]
 
-    ✅ Uso de @shared_task e .delay()
+### How to Use
 
-    ✅ Confirmação de RabbitMQ configurado no docker-compose.yaml
-
-Logs Estruturados
-
-    ✅ Logging básico (logger.info)
-
-    ✅ Logs estruturados (JSON formatado, timestamps, níveis de severidade)
-
-Documentação (Swagger/OpenAPI)
-
-    ❌ Integração com drf-yasg ou drf-spectacular
-
-    ❌ Rotas documentadas e categorizadas
-
-Frontend (React)
-Telas e Funcionalidades
-
-    ✅ Estrutura básica (App.jsx, Login.jsx, Pedidos.jsx)
-
-    ✅ Autenticação JWT (login/logout, armazenamento de token)
-
-    ✅ Listagem de pedidos (consumindo /api/v1/pedidos/)
-
-    ✅ Formulário de criação/edição de pedidos
-
-    ✅ Atualização dinâmica do status (polling/WebSocket opcional)
-
-Integração com Backend
-
-    ❌ Configuração do Axios/Fetch (interceptors, headers de autenticação)
-
-    ❌ Tratamento de erros (401, 403, 500)
-
-Containerização & Infraestrutura
-Docker & Docker Compose
-
-    ✅ Dockerfile para backend e frontend
-
-    ✅ Confirmação de serviços no docker-compose.yaml (PostgreSQL, RabbitMQ, Celery)
-
-    ✅ Variáveis de ambiente (.env) para configurações sensíveis
-
-Makefile
-
-    ✅ Comandos básicos (up, down, logs, migrate, createsuperuser)
-
-Documentação do Projeto
-README.md
-
-    ❌ Explicação do projeto
-
-    ❌ Como rodar o sistema (pré-requisitos, docker-compose up)
-
-    ❌ Como acessar Swagger
-
-    ❌ Como autenticar (obter token JWT)
-
-    ❌ Como testar tarefas assíncronas
-
-Critérios Opcionais (Não Obrigatórios, mas Bonus)
-
-    ❌ Testes automatizados (pytest, unittest)
-
-    ❌ Gerenciamento de estado avançado (Redux, Context API)
-
-    ❌ UI responsiva (CSS/component library)
+On the frontend page, you can create a new message through the button.
+Enter a description and a title, then send it.
+All simultaneous pages will automatically fetch your message, delivered via Celery.

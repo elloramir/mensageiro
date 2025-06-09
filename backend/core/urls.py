@@ -5,15 +5,11 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from rest_framework import permissions
 
-# Configuração do Schema para Swagger
 schema_view = get_schema_view(
     openapi.Info(
-        title="Minha API",
+        title="API de pedidos",
         default_version='v1',
-        description="Documentação da API do meu projeto",
-        terms_of_service="https://www.example.com/terms/",
-        contact=openapi.Contact(email="contato@exemplo.com"),
-        license=openapi.License(name="MIT License"),
+        description="Documentação da API de pedidos",
     ),
     public=True,
     permission_classes=(permissions.AllowAny,),
