@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useNavigate  } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const client = axios.create({
@@ -18,8 +19,7 @@ client.interceptors.response.use(
         if (error.response?.status === 401) {
             toast.error('Unauthorized. Please log in again.');
             localStorage.removeItem('access_token');
-            // Optional: redirect to login page here
-
+            window.location.href = "/login";
         } else if (error.response) {
             toast.error(error.response.data.detail || 'An error occurred');
         } else {
