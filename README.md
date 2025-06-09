@@ -9,10 +9,12 @@ A containerized fullstack application with a Django REST Framework backend and a
 
 ### Installation Setup
 
+```bash
 git clone https://github.com/elloramir/messageiro
 cp .env.example .env
 docker-compose up --build
 make createsuperuser
+```
 
 ### Services
 
@@ -26,6 +28,7 @@ make createsuperuser
 Authentication is handled through the frontend login using the user created during the installation step.
 The authentication endpoint is automatically created by the JWT addon.
 
+```bash
 POST http://localhost:8000/token/
 Content-Type: application/json
 
@@ -35,6 +38,7 @@ Content-Type: application/json
 }
 
 Authorization: Bearer [your_token]
+```
 
 ### How to Use
 
