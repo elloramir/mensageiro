@@ -10,7 +10,7 @@ A containerized fullstack application with a Django REST Framework backend and a
 ### Installation Setup
 
 ```bash
-git clone https://github.com/elloramir/messageiro
+git clone https://github.com/elloramir/mensageiro
 cp .env.example .env
 docker compose up --build -d
 make createsuperuser
